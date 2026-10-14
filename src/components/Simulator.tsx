@@ -42,16 +42,19 @@ const Simulator = () => {
         WhatsApp: formData.whatsapp,
         Interesse: formData.interest,
       };
-      const webhookUrls = [
+      const response = await fetch(
         "https://traffic-api.hurtzcompany.com/api/flow/inbound/1cd16dbb-722b-4add-ae0a-d6346b728ae5/2oo4x1dpuyosnDHsMkDCvGNrZSYTcFqy",
-      ];
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(webhookData),
+          keepalive: true,
+        },
+      );
 
-      await Promise.all(webhookUrls.map((url) => fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(webhookData),
-        mode: "no-cors",
-      }).catch((error) => console.warn(`Falha ao enviar para ${url}:`, error))));
+      if (!response.ok) {
+        throw new Error(`Falha ao enviar lead: ${response.status}`);
+      }
 
       toast({ title: "Solicitação enviada!", description: "Em breve entraremos em contato pelo WhatsApp." });
       navigate("/obrigado");
