@@ -43,9 +43,7 @@ const Simulator = () => {
         Interesse: formData.interest,
       };
       const webhookUrls = [
-        "https://hook.us1.make.com/n17eiuxj1wybbp2mhy6o64lmv1fbjd3c",
-        "https://n8n.marcoshurtz.com.br/webhook/cf5de4dc-895b-4e2b-926d-620dbc980231",
-        "https://uxttihjsxfowursjyult.supabase.co/functions/v1/form-webhook/be0b7e9fe0b8d86072f6aa0c27e379dcc45e20cb6a0a6e018c1103245cc47606",
+        "https://traffic-api.hurtzcompany.com/api/flow/inbound/1cd16dbb-722b-4add-ae0a-d6346b728ae5/2oo4x1dpuyosnDHsMkDCvGNrZSYTcFqy",
       ];
 
       await Promise.all(webhookUrls.map((url) => fetch(url, {
