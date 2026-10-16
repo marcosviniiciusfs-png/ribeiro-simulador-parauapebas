@@ -1,0 +1,11 @@
+{
+  "main_module": "lead-worker.mjs",
+  "compatibility_date": "2026-10-16",
+  "bindings": [
+    {
+      "name": "DB",
+      "type": "d1",
+      "id": "38bd39ee-7125-4d20-a38e-397d2a4367d5"
+    }
+  ]
+}

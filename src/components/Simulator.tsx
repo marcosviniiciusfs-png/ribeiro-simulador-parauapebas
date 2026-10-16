@@ -16,6 +16,8 @@ interface FormData {
 }
 
 const totalSteps = 3;
+const leadEndpoint = "https://ribeiro-parauapebas-leads-api.hurtz-assistente.workers.dev";
+const getCookie = (name: string) => document.cookie.split("; ").find((cookie) => cookie.startsWith(`${name}=`))?.split("=").slice(1).join("=");
 
 const Simulator = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -36,14 +38,18 @@ const Simulator = () => {
     setIsSubmitting(true);
 
     try {
+      const eventId = crypto.randomUUID();
       const webhookData = {
         "Data de Entrada": new Intl.DateTimeFormat("pt-BR").format(new Date()),
         "Nome Completo": formData.fullName,
         WhatsApp: formData.whatsapp,
         Interesse: formData.interest,
+        event_id: eventId,
+        fbp: getCookie("_fbp"),
+        fbc: getCookie("_fbc"),
       };
       const response = await fetch(
-        "https://traffic-api.hurtzcompany.com/api/flow/inbound/1cd16dbb-722b-4add-ae0a-d6346b728ae5/2oo4x1dpuyosnDHsMkDCvGNrZSYTcFqy",
+        leadEndpoint,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -57,6 +63,7 @@ const Simulator = () => {
       }
 
       toast({ title: "Solicitação enviada!", description: "Em breve entraremos em contato pelo WhatsApp." });
+      window.fbq?.("track", "Lead", {}, { eventID: eventId });
       navigate("/obrigado");
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
