@@ -1,5 +1,5 @@
 const allowedOrigin = "https://ribeiroparauapebas.simulead.com.br";
-const downstreamUrl = "https://traffic-api.hurtzcompany.com/api/flow/inbound/1cd16dbb-722b-4add-ae0a-d6346b728ae5/2oo4x1dpuyosnDHsMkDCvGNrZSYTcFqy";
+const downstreamUrl = "https://traffic-api.hurtzcompany.com/api/flow/inbound/e898064e-ac52-4889-932a-0cf3fc72aa07/-qaPjhSf0HPO1wzEW4_xiSeUnGG7boMr";
 const pixelId = "561285766391551";
 
 const corsHeaders = {
